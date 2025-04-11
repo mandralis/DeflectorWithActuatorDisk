@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 | OpenFOAM: The Open Source CFD Toolbox           |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actuatorDisk
+{
+    type        meanVelocityForce;
+    active      yes;
+
+    meanVelocityForceCoeffs
+    {
+        selectionMode   cellZone;
+        cellZone        actuatorDiskZone;
+
+        Ubar            (-0.866 0.5 0);
+        relaxation      1;
+
+        fields          (U); 
+    }
+}

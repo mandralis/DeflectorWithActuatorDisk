@@ -1,0 +1,1 @@
+simpleFoam > log.simpleFoam

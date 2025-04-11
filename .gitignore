@@ -1,13 +1,13 @@
-# === Ignore all time-step directories except 0/ ===
-[1-9]*        # Folders like 1, 10, 100
-[0-9][0-9]*   # Folders like 00, 01, 02
-[0-9]*.[0-9]* # Folders like 0.1, 10.2, 100.001
-
-# === Keep initial condition folder (e.g. 0) ===
+# Ignore all time directories except 0/
+[1-9]*/
+[0-9][0-9]*/
+[0-9]*.[0-9]*/
 !0/
 
 # === Ignore processor directories from parallel runs ===
 processor*
+
+.vscode
 
 # === Ignore logs and temporary files ===
 log.*

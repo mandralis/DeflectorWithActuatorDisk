@@ -1,0 +1,44 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    {
+        name    actuatorDiskZone;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+            p1      (0.09433 0.1534 0);     // base of the cylinder (adjust as needed)
+            p2      (0.08567 0.1584 0);    // top of the cylinder (normal axis = y)
+            radius  0.114;
+        }
+    }
+
+    {
+        name    actuatorDiskZone;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuatorDiskZone;
+        }
+    }
+);
