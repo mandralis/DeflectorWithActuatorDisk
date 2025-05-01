@@ -5,56 +5,39 @@
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
-
 FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    location    "system";
-    object      blockMeshDict;
+    arch        "LSB;label=32;scalar=64";
+    class       volVectorField;
+    location    "0";
+    object      moment;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-vertices
-(
-    (-1.0 -1.0 -1.0) // 0
-    ( 1.0 -1.0 -1.0) // 1
-    ( 1.0  1.0 -1.0) // 2
-    (-1.0  1.0 -1.0) // 3
-    (-1.0 -1.0  1.0) // 4
-    ( 1.0 -1.0  1.0) // 5
-    ( 1.0  1.0  1.0) // 6
-    (-1.0  1.0  1.0) // 7
-);
+dimensions      [1 2 -2 0 0 0 0];
 
-blocks
-(
-    hex (0 1 2 3 4 5 6 7) (100 100 100) simpleGrading (1 1 1)
-);
+internalField   uniform (0 0 0);
 
-edges        ();
-boundary
-(
+boundaryField
+{
     outlet
     {
-        type patch;
-        faces
-        (
-            (3 7 6 2)
-        );
+        type            calculated;
+        value           uniform (0 0 0);
     }
     sides
     {
-        type patch;
-        faces
-        (
-            (0 4 7 3)
-            (1 2 6 5)
-            (0 1 5 4)
-            (0 3 2 1)
-            (4 5 6 7)
-        );
+        type            calculated;
+        value           uniform (0 0 0);
     }
-);
-mergePatchPairs ();
+    deflector
+    {
+        type            calculated;
+        value           uniform (0 0 0);
+    }
+}
+
+
+// ************************************************************************* //

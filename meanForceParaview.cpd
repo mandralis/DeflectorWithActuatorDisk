@@ -1,0 +1,155 @@
+<CustomFilterDefinitions>
+  <CustomProxyDefinition name="compute_mean_surface_force" group="filters">
+    <CompoundSourceProxy id="10196" servers="1">
+      <Proxy group="filters" type="Calculator" id="9890" servers="1" compound_name="Calculator1">
+        <Property name="AttributeType" id="9890.AttributeType" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="enum" id="9890.AttributeType.enum">
+            <Entry value="0" text="Point Data"/>
+            <Entry value="1" text="Cell Data"/>
+            <Entry value="4" text="Vertex Data"/>
+            <Entry value="5" text="Edge Data"/>
+            <Entry value="6" text="Row Data"/>
+          </Domain>
+        </Property>
+        <Property name="CoordinateResults" id="9890.CoordinateResults" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9890.CoordinateResults.bool"/>
+        </Property>
+        <Property name="Function" id="9890.Function" number_of_elements="1">
+          <Element index="0" value="1.225 * pMean * Normals"/>
+        </Property>
+        <Property name="Input" id="9890.Input" number_of_elements="1">
+          <Proxy value="9665" output_port="0"/>
+          <Domain name="groups" id="9890.Input.groups"/>
+          <Domain name="input_array" id="9890.Input.input_array"/>
+          <Domain name="input_type" id="9890.Input.input_type"/>
+        </Property>
+        <Property name="ReplaceInvalidValues" id="9890.ReplaceInvalidValues" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9890.ReplaceInvalidValues.bool"/>
+        </Property>
+        <Property name="ReplacementValue" id="9890.ReplacementValue" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="range" id="9890.ReplacementValue.range"/>
+        </Property>
+        <Property name="ResultArrayName" id="9890.ResultArrayName" number_of_elements="1">
+          <Element index="0" value="pressure_force"/>
+        </Property>
+        <Property name="ResultArrayType" id="9890.ResultArrayType" number_of_elements="1">
+          <Element index="0" value="11"/>
+          <Domain name="enum" id="9890.ResultArrayType.enum">
+            <Entry value="2" text="Char"/>
+            <Entry value="15" text="Signed Char"/>
+            <Entry value="3" text="Unsigned Char"/>
+            <Entry value="4" text="Short"/>
+            <Entry value="5" text="Unsigned Short"/>
+            <Entry value="6" text="Int"/>
+            <Entry value="7" text="Unsigned Int"/>
+            <Entry value="8" text="Long"/>
+            <Entry value="9" text="Unsigned Long"/>
+            <Entry value="10" text="Float"/>
+            <Entry value="11" text="Double"/>
+            <Entry value="12" text="Id Type"/>
+          </Domain>
+        </Property>
+        <Property name="ResultNormals" id="9890.ResultNormals" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9890.ResultNormals.bool"/>
+        </Property>
+        <Property name="ResultTCoords" id="9890.ResultTCoords" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9890.ResultTCoords.bool"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="DataSetSurfaceFilter" id="9440" servers="1" compound_name="ExtractSurface1">
+        <Property name="Input" id="9440.Input" number_of_elements="1">
+          <Domain name="groups" id="9440.Input.groups"/>
+          <Domain name="input_type" id="9440.Input.input_type"/>
+        </Property>
+        <Property name="NonlinearSubdivisionLevel" id="9440.NonlinearSubdivisionLevel" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="range" id="9440.NonlinearSubdivisionLevel.range"/>
+        </Property>
+        <Property name="PieceInvariant" id="9440.PieceInvariant" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9440.PieceInvariant.bool"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="PolyDataNormals" id="9665" servers="1" compound_name="GenerateSurfaceNormals1">
+        <Property name="ComputeCellNormals" id="9665.ComputeCellNormals" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9665.ComputeCellNormals.bool"/>
+        </Property>
+        <Property name="Consistency" id="9665.Consistency" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9665.Consistency.bool"/>
+        </Property>
+        <Property name="FeatureAngle" id="9665.FeatureAngle" number_of_elements="1">
+          <Element index="0" value="30"/>
+          <Domain name="range" id="9665.FeatureAngle.range"/>
+        </Property>
+        <Property name="FlipNormals" id="9665.FlipNormals" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9665.FlipNormals.bool"/>
+        </Property>
+        <Property name="Input" id="9665.Input" number_of_elements="1">
+          <Proxy value="9440" output_port="0"/>
+          <Domain name="groups" id="9665.Input.groups"/>
+          <Domain name="input_type" id="9665.Input.input_type"/>
+        </Property>
+        <Property name="NonManifoldTraversal" id="9665.NonManifoldTraversal" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9665.NonManifoldTraversal.bool"/>
+        </Property>
+        <Property name="PieceInvariant" id="9665.PieceInvariant" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9665.PieceInvariant.bool"/>
+        </Property>
+        <Property name="Splitting" id="9665.Splitting" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9665.Splitting.bool"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="IntegrateAttributes" id="10115" servers="1" compound_name="IntegrateVariables1">
+        <Property name="DivideCellDataByVolume" id="10115.DivideCellDataByVolume" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="10115.DivideCellDataByVolume.bool"/>
+        </Property>
+        <Property name="Input" id="10115.Input" number_of_elements="1">
+          <Proxy value="9890" output_port="0"/>
+          <Domain name="groups" id="10115.Input.groups"/>
+          <Domain name="input_type" id="10115.Input.input_type"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="PlotDataOverTime" id="10139" servers="1" compound_name="PlotDataOverTime1">
+        <Property name="FieldAssociation" id="10139.FieldAssociation" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="enum" id="10139.FieldAssociation.enum">
+            <Entry value="0" text="Points"/>
+            <Entry value="1" text="Cells"/>
+            <Entry value="4" text="Vertices"/>
+            <Entry value="5" text="Edges"/>
+            <Entry value="6" text="Rows"/>
+          </Domain>
+        </Property>
+        <Property name="Input" id="10139.Input" number_of_elements="1">
+          <Proxy value="10115" output_port="0"/>
+          <Domain name="groups" id="10139.Input.groups"/>
+          <Domain name="input_type" id="10139.Input.input_type"/>
+        </Property>
+        <Property name="Only Report Selection Statistics" id="10139.Only Report Selection Statistics" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="10139.Only Report Selection Statistics.bool"/>
+        </Property>
+      </Proxy>
+      <ExposedProperties>
+        <Property name="Input" proxy_name="ExtractSurface1" exposed_name="Input"/>
+      </ExposedProperties>
+      <OutputPort name="Output" proxy="PlotDataOverTime1" port_index="0"/>
+      <Hints>
+        <ShowInMenu/>
+      </Hints>
+    </CompoundSourceProxy>
+  </CustomProxyDefinition>
+</CustomFilterDefinitions>

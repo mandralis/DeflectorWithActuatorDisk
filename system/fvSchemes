@@ -1,11 +1,11 @@
-/*--------------------------------*- C++ -*----------------------------------*\
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2412                                  |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
-|    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
 
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
@@ -28,16 +28,15 @@ gradSchemes
 
 divSchemes
 {
-    default                     none;
-    div(phi,U)                  Gauss linearUpwind grad(U);
-    div(phi,k)                  Gauss upwind;
-    div(phi,epsilon)            Gauss upwind;
-    div(phi,R)                  Gauss upwind;
-    div(R)                      Gauss linear;
-    div(phi,nuTilda)            Gauss upwind;
+    default         none;
+    div(phi,U)      bounded Gauss linearUpwind grad(U);
+    div(phi,k)      bounded Gauss limitedLinear 1;
+    div(phi,epsilon) bounded Gauss limitedLinear 1;
+    div(phi,omega)  bounded Gauss limitedLinear 1;
+    div(phi,v2)     bounded Gauss limitedLinear 1;
     div((nuEff*dev2(T(grad(U))))) Gauss linear;
+    div(nonlinearStress) Gauss linear;
 }
-
 
 laplacianSchemes
 {
@@ -53,3 +52,11 @@ snGradSchemes
 {
     default         corrected;
 }
+
+wallDist
+{
+    method meshWave;
+}
+
+
+// ************************************************************************* //

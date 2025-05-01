@@ -17,13 +17,15 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 application     simpleFoam;
-startFrom       startTime;
+// startFrom       startTime;
+startFrom       latestTime;
 startTime       0;
 stopAt          endTime;
-endTime         1000;
+endTime         2000;
 deltaT          1;
 writeControl    timeStep;
-writeInterval   10;
+// writeTime       10;
+writeFrequency  500;
 purgeWrite      0;
 writeFormat     ascii;
 writePrecision  6;
@@ -34,20 +36,89 @@ runTimeModifiable yes;
 
 functions
 {
-    forces
+    solverInfo
     {
-        type forces;
-        functionObjectLibs ("libforces.so");
-        patches (deflector);
-        rho rhoInf;
-        rhoInf 1.225;
-        CofR (0 0 0);
+        type                solverInfo;
+        libs                ("libutilityFunctionObjects.so");
+        enabled             true;
+        writeControl        timeStep;
+        writeInterval       1;
+        log                 true;
+        writeResidualFields no;
+        fields
+        (
+            U
+            p
+            // k, epsilon, etc.
+        );
     }
-    writeZones
+    fieldAverage1
     {
-        type            writeCellZones;
-        libs            ("libutilityFunctionObjects.so");
+        type             fieldAverage;
+        libs             ("libfieldFunctionObjects.so");
+        // startTime        500;
+        enabled          true;
+        log              true;
+        writeFields      true;
+        restartOnRestart false;
+        writeControl     timeStep;
+        writeInterval    100;
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+            p
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+        );
+    }
+    deflectorForce
+    {
+        type            forces;
+        libs            ("libforces.so");
+        enabled         true;
+        patches         (deflector);
+        rho             rhoInf;
+        rhoInf          1.225;
+        pRef            0.0;
+        CofR            (0 0 0);
+        log             true;
+        writeFields     false;
+        writeControl    timeStep;
+        writeInterval   1;
+    }
+    pAbove
+    {
+        type            volFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        operation       average;
+        regionType      cellSet;
+        name            aboveDiskCells;
+        fields          (p);
+        log             true;
+        writeFields     false;
+        writeControl    timeStep;
+        writeInterval   1;
+    }
+    pBelow
+    {
+        type            volFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        operation       average;
+        regionType      cellSet;
+        name            belowDiskCells;
+        fields          (p);
+        log             true;
+        writeFields     false;
         writeControl    timeStep;
         writeInterval   1;
     }
 }
+

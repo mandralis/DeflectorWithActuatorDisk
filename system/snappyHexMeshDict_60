@@ -33,7 +33,7 @@ geometry
         type searchableCylinder;
         point1 (0.3498  0.00588457 0);   // match topoSet p1
         point2 (-0.1698  0.30588457 0);   // match topoSet p2
-        radius 0.25;
+        radius 0.20;
     }
 }
 

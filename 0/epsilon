@@ -13,27 +13,21 @@ FoamFile
     object      epsilon;
 }
 dimensions      [0 2 -3 0 0 0 0];
-internalField   uniform 0.001;
+internalField   uniform 0.0007;
 boundaryField
 {
-    inlet
+    sides
     {
-        type            fixedValue;
-        value           uniform 0.001;
+        type            zeroGradient;
     }
     outlet
     {
         type            zeroGradient;
     }
-    walls
-    {
-        type            epsilonWallFunction;
-        value           uniform 0.001;
-    }
     deflector
     {
         type epsilonWallFunction;  // for epsilon
-        value           uniform 1e-5;
+        value           uniform 0.0007;
 
     }
 }

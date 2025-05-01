@@ -9,24 +9,19 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    location    "0";
-    object      p;
+    object      nut;
 }
-dimensions      [0 2 -2 0 0 0 0];
-internalField   uniform 0;
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0.028;
+
 boundaryField
 {
-    sides
-    {
-        type fixedValue;
-        value uniform 0;
-    }
-    outlet
-    {
-        type zeroGradient;
-    }
-    deflector
-    {
-        type zeroGradient;
+    sides       { type zeroGradient; }
+    outlet      { type zeroGradient; }
+    // steady no-slip surface
+    deflector   { 
+        type nutkWallFunction; 
+        value uniform 0.028;
     }
 }

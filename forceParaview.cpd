@@ -1,0 +1,286 @@
+<CustomFilterDefinitions>
+  <CustomProxyDefinition name="compute surface force" group="sources">
+    <CompoundSourceProxy id="9543" servers="1">
+      <Proxy group="filters" type="Calculator" id="9271" servers="1" compound_name="Calculator1">
+        <Property name="AttributeType" id="9271.AttributeType" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="enum" id="9271.AttributeType.enum">
+            <Entry value="0" text="Point Data"/>
+            <Entry value="1" text="Cell Data"/>
+            <Entry value="4" text="Vertex Data"/>
+            <Entry value="5" text="Edge Data"/>
+            <Entry value="6" text="Row Data"/>
+          </Domain>
+        </Property>
+        <Property name="CoordinateResults" id="9271.CoordinateResults" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9271.CoordinateResults.bool"/>
+        </Property>
+        <Property name="Function" id="9271.Function" number_of_elements="1">
+          <Element index="0" value="1.225 * p * Normals"/>
+        </Property>
+        <Property name="Input" id="9271.Input" number_of_elements="1">
+          <Proxy value="9046" output_port="0"/>
+          <Domain name="groups" id="9271.Input.groups"/>
+          <Domain name="input_array" id="9271.Input.input_array"/>
+          <Domain name="input_type" id="9271.Input.input_type"/>
+        </Property>
+        <Property name="ReplaceInvalidValues" id="9271.ReplaceInvalidValues" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9271.ReplaceInvalidValues.bool"/>
+        </Property>
+        <Property name="ReplacementValue" id="9271.ReplacementValue" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="range" id="9271.ReplacementValue.range"/>
+        </Property>
+        <Property name="ResultArrayName" id="9271.ResultArrayName" number_of_elements="1">
+          <Element index="0" value="Result"/>
+        </Property>
+        <Property name="ResultArrayType" id="9271.ResultArrayType" number_of_elements="1">
+          <Element index="0" value="11"/>
+          <Domain name="enum" id="9271.ResultArrayType.enum">
+            <Entry value="2" text="Char"/>
+            <Entry value="15" text="Signed Char"/>
+            <Entry value="3" text="Unsigned Char"/>
+            <Entry value="4" text="Short"/>
+            <Entry value="5" text="Unsigned Short"/>
+            <Entry value="6" text="Int"/>
+            <Entry value="7" text="Unsigned Int"/>
+            <Entry value="8" text="Long"/>
+            <Entry value="9" text="Unsigned Long"/>
+            <Entry value="10" text="Float"/>
+            <Entry value="11" text="Double"/>
+            <Entry value="12" text="Id Type"/>
+          </Domain>
+        </Property>
+        <Property name="ResultNormals" id="9271.ResultNormals" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9271.ResultNormals.bool"/>
+        </Property>
+        <Property name="ResultTCoords" id="9271.ResultTCoords" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9271.ResultTCoords.bool"/>
+        </Property>
+      </Proxy>
+      <Proxy group="sources" type="OpenFOAMReader" id="8342" servers="1" compound_name="DeflectorWithActuatorDisk.foam">
+        <Property name="AddDimensionsToArrayNames" id="8342.AddDimensionsToArrayNames" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="8342.AddDimensionsToArrayNames.bool"/>
+        </Property>
+        <Property name="CacheMesh" id="8342.CacheMesh" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="8342.CacheMesh.bool"/>
+        </Property>
+        <Property name="CaseType" id="8342.CaseType" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="enum" id="8342.CaseType.enum">
+            <Entry value="0" text="Decomposed Case"/>
+            <Entry value="1" text="Reconstructed Case"/>
+          </Domain>
+        </Property>
+        <Property name="CellArrayInfo" id="8342.CellArrayInfo" number_of_elements="8">
+          <Element index="0" value="U"/>
+          <Element index="1" value="1"/>
+          <Element index="2" value="force"/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="moment"/>
+          <Element index="5" value="0"/>
+          <Element index="6" value="p"/>
+          <Element index="7" value="1"/>
+        </Property>
+        <Property name="CellArrays" id="8342.CellArrays" number_of_elements="8">
+          <Element index="0" value="U"/>
+          <Element index="1" value="1"/>
+          <Element index="2" value="force"/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="moment"/>
+          <Element index="5" value="0"/>
+          <Element index="6" value="p"/>
+          <Element index="7" value="1"/>
+          <Domain name="array_list" id="8342.CellArrays.array_list">
+            <String text="U"/>
+            <String text="force"/>
+            <String text="moment"/>
+            <String text="p"/>
+          </Domain>
+        </Property>
+        <Property name="CopyDataToCellZones" id="8342.CopyDataToCellZones" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="8342.CopyDataToCellZones.bool"/>
+        </Property>
+        <Property name="CreateCellToPoint" id="8342.CreateCellToPoint" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="8342.CreateCellToPoint.bool"/>
+        </Property>
+        <Property name="DecomposePolyhedra" id="8342.DecomposePolyhedra" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="8342.DecomposePolyhedra.bool"/>
+        </Property>
+        <Property name="FileName" id="8342.FileName" number_of_elements="1">
+          <Element index="0" value="/home/m4pc/src/DeflectorWithActuatorDisk/DeflectorWithActuatorDisk.foam"/>
+          <Domain name="files" id="8342.FileName.files"/>
+        </Property>
+        <Property name="LagrangianArrayInfo" id="8342.LagrangianArrayInfo"/>
+        <Property name="LagrangianArrays" id="8342.LagrangianArrays">
+          <Domain name="array_list" id="8342.LagrangianArrays.array_list"/>
+        </Property>
+        <Property name="ListTimeStepsByControlDict" id="8342.ListTimeStepsByControlDict" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="8342.ListTimeStepsByControlDict.bool"/>
+        </Property>
+        <Property name="MeshRegions" id="8342.MeshRegions" number_of_elements="10">
+          <Element index="0" value="deflector"/>
+          <Element index="1" value="1"/>
+          <Element index="2" value="inlet"/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="internalMesh"/>
+          <Element index="5" value="0"/>
+          <Element index="6" value="outlet"/>
+          <Element index="7" value="0"/>
+          <Element index="8" value="walls"/>
+          <Element index="9" value="0"/>
+          <Domain name="array_list" id="8342.MeshRegions.array_list">
+            <String text="internalMesh"/>
+            <String text="inlet"/>
+            <String text="outlet"/>
+            <String text="walls"/>
+            <String text="deflector"/>
+          </Domain>
+        </Property>
+        <Property name="PatchArrayInfo" id="8342.PatchArrayInfo" number_of_elements="10">
+          <Element index="0" value="internalMesh"/>
+          <Element index="1" value="0"/>
+          <Element index="2" value="inlet"/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="outlet"/>
+          <Element index="5" value="0"/>
+          <Element index="6" value="walls"/>
+          <Element index="7" value="0"/>
+          <Element index="8" value="deflector"/>
+          <Element index="9" value="1"/>
+        </Property>
+        <Property name="PointArrayInfo" id="8342.PointArrayInfo"/>
+        <Property name="PointArrays" id="8342.PointArrays">
+          <Domain name="array_list" id="8342.PointArrays.array_list"/>
+        </Property>
+        <Property name="PositionsIsIn13Format" id="8342.PositionsIsIn13Format" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="8342.PositionsIsIn13Format.bool"/>
+        </Property>
+        <Property name="ReadZones" id="8342.ReadZones" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="8342.ReadZones.bool"/>
+        </Property>
+        <Property name="Refresh" id="8342.Refresh"/>
+        <Property name="SkipZeroTime" id="8342.SkipZeroTime" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="8342.SkipZeroTime.bool"/>
+        </Property>
+        <Property name="TimestepValues" id="8342.TimestepValues" number_of_elements="38">
+          <Element index="0" value="10"/>
+          <Element index="1" value="20"/>
+          <Element index="2" value="30"/>
+          <Element index="3" value="40"/>
+          <Element index="4" value="50"/>
+          <Element index="5" value="60"/>
+          <Element index="6" value="70"/>
+          <Element index="7" value="80"/>
+          <Element index="8" value="90"/>
+          <Element index="9" value="100"/>
+          <Element index="10" value="110"/>
+          <Element index="11" value="120"/>
+          <Element index="12" value="130"/>
+          <Element index="13" value="140"/>
+          <Element index="14" value="150"/>
+          <Element index="15" value="160"/>
+          <Element index="16" value="170"/>
+          <Element index="17" value="180"/>
+          <Element index="18" value="190"/>
+          <Element index="19" value="200"/>
+          <Element index="20" value="210"/>
+          <Element index="21" value="220"/>
+          <Element index="22" value="230"/>
+          <Element index="23" value="240"/>
+          <Element index="24" value="250"/>
+          <Element index="25" value="260"/>
+          <Element index="26" value="270"/>
+          <Element index="27" value="280"/>
+          <Element index="28" value="290"/>
+          <Element index="29" value="300"/>
+          <Element index="30" value="310"/>
+          <Element index="31" value="320"/>
+          <Element index="32" value="330"/>
+          <Element index="33" value="340"/>
+          <Element index="34" value="350"/>
+          <Element index="35" value="360"/>
+          <Element index="36" value="370"/>
+          <Element index="37" value="380"/>
+        </Property>
+        <Property name="Use64BitFloats" id="8342.Use64BitFloats" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="enum" id="8342.Use64BitFloats.enum">
+            <Entry value="0" text="32-bit (SP)"/>
+            <Entry value="1" text="64-bit (DP)"/>
+          </Domain>
+        </Property>
+        <Property name="Use64BitLabels" id="8342.Use64BitLabels" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="enum" id="8342.Use64BitLabels.enum">
+            <Entry value="0" text="32-bit"/>
+            <Entry value="1" text="64-bit"/>
+          </Domain>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="PolyDataNormals" id="9046" servers="1" compound_name="GenerateSurfaceNormals1">
+        <Property name="ComputeCellNormals" id="9046.ComputeCellNormals" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9046.ComputeCellNormals.bool"/>
+        </Property>
+        <Property name="Consistency" id="9046.Consistency" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9046.Consistency.bool"/>
+        </Property>
+        <Property name="FeatureAngle" id="9046.FeatureAngle" number_of_elements="1">
+          <Element index="0" value="30"/>
+          <Domain name="range" id="9046.FeatureAngle.range"/>
+        </Property>
+        <Property name="FlipNormals" id="9046.FlipNormals" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9046.FlipNormals.bool"/>
+        </Property>
+        <Property name="Input" id="9046.Input" number_of_elements="1">
+          <Proxy value="8342" output_port="0"/>
+          <Domain name="groups" id="9046.Input.groups"/>
+          <Domain name="input_type" id="9046.Input.input_type"/>
+        </Property>
+        <Property name="NonManifoldTraversal" id="9046.NonManifoldTraversal" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9046.NonManifoldTraversal.bool"/>
+        </Property>
+        <Property name="PieceInvariant" id="9046.PieceInvariant" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9046.PieceInvariant.bool"/>
+        </Property>
+        <Property name="Splitting" id="9046.Splitting" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="9046.Splitting.bool"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="IntegrateAttributes" id="9496" servers="1" compound_name="IntegrateVariables1">
+        <Property name="DivideCellDataByVolume" id="9496.DivideCellDataByVolume" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="9496.DivideCellDataByVolume.bool"/>
+        </Property>
+        <Property name="Input" id="9496.Input" number_of_elements="1">
+          <Proxy value="9271" output_port="0"/>
+          <Domain name="groups" id="9496.Input.groups"/>
+          <Domain name="input_type" id="9496.Input.input_type"/>
+        </Property>
+      </Proxy>
+      <OutputPort name="Output" proxy="IntegrateVariables1" port_index="0"/>
+      <Hints>
+        <ShowInMenu/>
+      </Hints>
+    </CompoundSourceProxy>
+  </CustomProxyDefinition>
+</CustomFilterDefinitions>

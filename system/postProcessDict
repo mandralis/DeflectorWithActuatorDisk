@@ -1,0 +1,44 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      postProcessDict;
+}
+
+functions
+{
+    fieldAveraging
+    {
+        type                fieldAverage;
+        functionObjectLibs  ("libfieldFunctionObjects.so");
+
+        // write at every existing time directory
+        writeControl        writeTime;
+
+        // don’t reset between runs or outputs
+        restartOnRestart    false;
+        restartOnOutput     false;
+
+        writeFields true;
+        log true;
+
+
+        // fields to average – mean over time → UMean, pMean
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean off;
+                base        time;
+            }
+            p
+            {
+                mean        on;
+                prime2Mean off;
+                base        time;
+            }
+        );
+    }
+}

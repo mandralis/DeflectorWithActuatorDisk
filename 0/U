@@ -13,21 +13,20 @@ FoamFile
     object      U;
 }
 dimensions      [0 1 -1 0 0 0 0];
-internalField   uniform (1 0 0);
+internalField   uniform (0 0 0);
 boundaryField
 {
-    inlet
+    sides
     {
-        type            fixedValue;
-        value           uniform (1 0 0);
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);  // fallback value if inflow happens
+        value           uniform (0 0 0);
     }
     outlet
     {
-        type            zeroGradient;
-    }
-    walls
-    {
-        type            noSlip;
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);  // fallback value if inflow happens
+        value           uniform (0 0 0);
     }
     deflector
     {
