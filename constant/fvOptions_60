@@ -10,21 +10,39 @@ FoamFile
     location    "constant";
     object      fvOptions;
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-actuatorDisk
+//---------------------------------------------------------------------------//
+
+actuatorThrust
 {
-    type            meanVelocityForce;
+    type            vectorSemiImplicitSource;
     active          yes;
 
-    meanVelocityForceCoeffs
+    vectorSemiImplicitSourceCoeffs
     {
-        /* Ubar            (-0.866 0.5 0); */
-        Ubar            (-1.732 1.0 0);
-        relaxation      1;
+        // --- which cells to apply the source in
         selectionMode   cellZone;
         cellZone        actuatorDiskZone;
-        fields          (U);
-    }
 
+        // --- which field(s) to source
+        fields          (U);
+
+        // --- interpret values as acceleration [m/s²]
+        volumeMode      absolute;
+
+        // --- linearization coefficients (zero here → fully explicit)
+        c1              [0 0 -1 0 0 0 0] 0;
+        c2              [0 0 -1 0 0 0 0] 0;
+
+        // --- the explicit (Su) and implicit (Sp) parts of S(x)=Su+Sp·x
+        sources
+        {
+            U
+            {
+                explicit (-0.8660254  0.5 0);
+                implicit 0;
+            }
+        }
+    }
 }
+​​​​​​​​​

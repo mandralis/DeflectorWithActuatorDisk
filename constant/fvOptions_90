@@ -39,7 +39,7 @@ actuatorThrust
         {
             U
             {
-                explicit (0 1.0 0);
+                explicit (-1  0 0);
                 implicit 0;
             }
         }

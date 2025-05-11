@@ -1,5 +1,8 @@
 import numpy as np
 
+thrust = 1.0
+rho = 1.225
+
 disk_thickness     = 0.005
 thickness_range    = [0.006,0.008]
 
@@ -10,7 +13,7 @@ dy = 0.0385
 dx = 0.0091
 R  = 0.1016
 
-phi = np.deg2rad(0)
+phi = np.deg2rad(80)
 
 d1 = dy * np.array([0,-1])
 n  = l * np.array([np.cos(phi),np.sin(phi)])
@@ -26,15 +29,22 @@ p_above_top  = p + d2 / dy_prop * thickness_range[1]
 p_below_top   = p - d2 / dy_prop * thickness_range[0]
 p_below_base  = p - d2 / dy_prop * thickness_range[1]
 
+d2hat = d2/np.linalg.norm(d2)
+print("-d2hat: ", -d2hat)
+
 
 print("p: ",p)
 print("p_top: ",p_top)
 print("p_base: ",p_base)
 
-print("Volume of actuator disk: ", 2*disk_thickness*np.pi*R**2)
 
 print("p_above_base: ",p_above_base)
 print("p_above_top: ",p_above_top)
 print("p_below_base: ",p_below_base)
 print("p_below_top: ",p_below_top)
+
+V = 2*disk_thickness*np.pi*R**2
+print("Volume of actuator disk: ", V)
+print("Force per unit volume per unit density (acceleration): ", thrust*d2hat/(V*rho))
+
 

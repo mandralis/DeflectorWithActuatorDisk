@@ -1,0 +1,117 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 | OpenFOAM: The Open Source CFD Toolbox           |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// actuatorDisk
+// {
+//     type            meanVelocityForce;
+//     active          yes;
+
+//     meanVelocityForceCoeffs
+//     {
+//         Ubar            (0.0 3.5 0);
+//         relaxation      1;
+//         selectionMode   cellZone;
+//         cellZone        actuatorDiskZone;
+//         fields          (U);
+//         relaxation      0.9;
+//     }
+// }
+
+
+actuatorDisk
+{
+    type            rotorDisk;
+
+    selectionMode   cellZone;
+    cellZone        actuatorDiskZone;
+
+    fields          (U);    // Names of fields on which to apply source
+    nBlades         3;      // Number of blades
+    tipEffect       1.0;   // Normalised radius above which lift = 0
+
+    inletFlowType   local;  // Inlet flow type specification
+    inletVelocity   (0 0 0);
+
+    geometryMode    specified;
+
+    origin          (0 0 0);
+    axis            (1 0 0);
+
+    refDirection    (0 0 1);  // Reference direction
+                              // - used as reference for psi angle
+    rpm             4000;
+
+    trimModel       fixedTrim;  // fixed || targetForce
+
+    rhoRef          1.225;
+    rhoInf          1.225;
+
+    fixedTrimCoeffs
+    {
+         theta0         0;
+         theta1c        0;
+         theta1s        0;
+    }
+
+    flapCoeffs
+    {
+        beta0           0;  // Coning angle [deg]
+        beta1c          0;  // Lateral flapping coeff (cos coeff)
+        beta2s          0;  // Longitudinal flapping coeff (sin coeff)
+    }
+
+    blade
+    {
+        data
+        (
+            (profile1 (0.006 -26.1 0.01286))
+            (profile1 (0.016 -24.62 0.01576))
+            (profile1 (0.026 -20.94 0.02088))
+            (profile1 (0.036 -19.51 0.02331))
+            (profile1 (0.046 -19.09 0.02276))
+            (profile1 (0.056 -17.41 0.02174))
+            (profile1 (0.066 -15.66 0.02067))
+            (profile1 (0.076 -14.59 0.01873))
+            (profile1 (0.086 -13.51 0.01596))
+            (profile1 (0.096 -13.37 0.01187))
+            (profile1 (0.1016 -13.37 0.01187))
+        );
+    }
+
+    profiles
+    {
+        profile1
+        {
+            type lookup;
+            data
+            (
+                (-90 0.14 1.30)
+                (-15 0.14 1.30)
+                (-12.5 0.09 1.5)
+                (-10 0.045 1.45)
+                (-7.5 0.072 1.10)
+                (-5 0.06 0.85)
+                (-2.5 0.049 0.60)
+                (0 0.04 0.38)
+                (2.5 0.049 0.60)
+                (5 0.06 0.85)
+                (7.5 0.072 1.10)
+                (10 0.045 1.45)
+                (12.5 0.09 1.5)
+                (15 0.14 1.30)
+                (90 0.14 1.30)
+            );
+        }
+    }
+}
