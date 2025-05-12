@@ -25,8 +25,8 @@ actions
         source  cylinderToCell;
         sourceInfo
         {
-            p1      (0.16842099 -0.00061371 0);     // base of the cylinder (adjust as needed)
-            p2      (0.17342099 -0.00927396 0);     // top of the cylinder (normal axis = y)
+            p1      (0.15058597 -0.04224142 0);     // base of the cylinder (adjust as needed)
+            p2      (0.15400618 -0.05163835 0);     // top of the cylinder (normal axis = y)
             radius  0.1016;
         }
     }
@@ -47,8 +47,8 @@ actions
         source  cylinderToCell;
         sourceInfo
         {
-            p1     (0.16792099 0.00025232 0);    // just below
-            p2     (0.16692099 0.00198437 0);     // very thin slice
+            p1     (0.15024395 -0.04130173 0);    // just below
+            p2     (0.14887587 -0.037542960);    // very thin slice
             radius 0.1016;
         }
     }
@@ -59,8 +59,8 @@ actions
         source  cylinderToCell;
         sourceInfo
         {
-            p1     (0.17392099 -0.01013999 0);    // just above
-            p2     (0.17492099 -0.01187204 0);    // very thin slice
+            p1     (0.1543482  -0.05257804 0);    // just above
+            p2     (0.15571628 -0.05633681 0);    // very thin slice
             radius 0.1016;
         }
     } 
